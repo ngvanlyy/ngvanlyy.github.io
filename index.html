@@ -608,6 +608,12 @@
   /* ---------- project filter ---------- */
   var projects = [].slice.call(document.querySelectorAll('.project'));
   var fbtns = [].slice.call(document.querySelectorAll('.filters button'));
+  /* show the number of projects in each category, e.g. "Dashboards (4)" */
+  fbtns.forEach(function(b){
+    var cat = b.getAttribute('data-cat');
+    var n = projects.filter(function(p){ return cat === 'all' || p.getAttribute('data-cat') === cat; }).length;
+    b.textContent = b.textContent + ' (' + n + ')';
+  });
   function layout(){
     var n = 0;
     projects.forEach(function(p){
